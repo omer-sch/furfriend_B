@@ -1,0 +1,65 @@
+###
+
+GET http://localhost:3000/user
+
+###
+
+GET http://localhost:3000/user?name=John%20Doe
+
+
+###
+
+GET http://localhost:3000/user/1234567891
+
+
+###
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "name": "John Doe 1",
+    "_id": "1234567891"
+}
+
+###
+
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "helllo1@test.com",
+    "password": "1234567890"
+}
+
+###
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "helllo1@test.com",
+    "password": "1234567890"
+}
+
+###
+PUT http://localhost:3000/user/1234567891
+Content-Type: application/json
+
+{
+    "name": "Updated Name"
+}
+
+###
+
+DELETE http://localhost:3000/user/1234567891
+
+###
+
+POST http://localhost:3000/auth/google
+Content-Type: application/json
+
+{
+    "credential": "632986613914-uhjteviggvm5odspcbeqgc8lh4fi0pdv.apps.googleusercontent.com
+"
+}
