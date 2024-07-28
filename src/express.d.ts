@@ -1,12 +1,13 @@
 // src/express.d.ts
 
 import { Express } from 'express-serve-static-core';
+import multer from 'multer';
 
 declare global {
   namespace Express {
     interface Request {
-      file?: Express.Multer.File;
-      files?: Express.Multer.File[];
+      file?: multer.File;
+      files?: multer.File[];
     }
   }
 }
