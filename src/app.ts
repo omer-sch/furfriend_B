@@ -30,14 +30,36 @@ const initApp = (): Promise<Express> => {
       //   res.header("Access-Control-Allow-Headers", "*");
       //   next();
       // })
+      // const corsOptions = {
+      //   origin:
+      //     process.env.NODE_ENV !== "production"
+      //       ? `http://${process.env.DOMAIN_BASE}:${process.env.FRONTEND_PORT}`
+      //       : `https://${process.env.DOMAIN_BASE}`,
+      //   credentials: true,
+      // };
+      // app.use(cors(corsOptions));
       const corsOptions = {
-        origin:
-          process.env.NODE_ENV !== "production"
-            ? `http://${process.env.DOMAIN_BASE}:${process.env.FRONTEND_PORT}`
-            : `https://${process.env.DOMAIN_BASE}`,
-        credentials: true,
-      };
-      app.use(cors(corsOptions));
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      `https://${process.env.DOMAIN_BASE}`,
+      'https://node13.cs.colman.ac.il',
+      'https://193.106.55.173'
+    ];
+    
+    if (process.env.NODE_ENV !== "production") {
+      allowedOrigins.push(`http://${process.env.DOMAIN_BASE}:${process.env.FRONTEND_PORT}`);
+    }
+
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS policy violation'));
+    }
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
       app.use("/user",userRoute);
       app.use("/userpost", PostRoute);
