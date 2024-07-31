@@ -14,7 +14,7 @@ initApp().then((app) => {
         version: "1.0.1",
         description: "REST server including authentication using JWT and refresh token",
       },
-      servers: [{ url: "https://node13.cs.colman.ac.il:4000", },],
+      servers: [{ url: "https://node13.cs.colman.ac.il", },],
     },
     apis: ["./src/routes/*.ts"],
   };
